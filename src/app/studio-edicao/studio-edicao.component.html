@@ -1,0 +1,35 @@
+
+
+<div>
+    <h3>Edição de studio</h3>
+    <p>Utilize o formulário para alterar a empresa</p>
+    <hr>
+</div>
+
+<form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <input type="hidden" formControlName="id_studio"/>
+        <div class="col-md-4">
+            <label>CNPJ</label>
+            <input type="text" class="form-control" readonly formControlName="cnpj">
+            <div class="text-danger" *ngIf="form.cnpj.touched && form.cnpj.invalid"> Por favor, informe o CNPJ da empresa</div>
+        </div>
+        <div class="col-md-4">
+            <label>Razão social</label>
+            <input type="text" class="form-control" formControlName="razaoSocial">
+            <div class="text-danger" *ngIf="form.razaoSocial.touched && form.razaoSocial.invalid"> Por favor, informe a razao social da empresa</div>
+        </div>
+        <div class="col-md-4">
+            <label>Nome fantasia</label>
+            <input type="text" class="form-control"  formControlName="nomeFantasia">
+            <div class="text-danger" *ngIf="form.nomeFantasia.touched && form.nomeFantasia.invalid"> Por favor, informe o nome fantasia da empresa</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" value="Salvar alterações" [disabled]="!formEdicao.valid" class="btn btn-primary">
+        </div>
+    </div>
+
+</form>
