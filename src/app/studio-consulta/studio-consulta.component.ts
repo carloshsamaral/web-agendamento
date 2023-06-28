@@ -12,6 +12,7 @@ export class StudioConsultaComponent implements OnInit {
   studios: any[] = [];
   mensagem_sucesso = '';
   mensagem_erro = '';
+  pagina: number =1;
 
   constructor(private httpClient : HttpClient){
 
@@ -58,6 +59,10 @@ export class StudioConsultaComponent implements OnInit {
     
       console.log(idStudio);
 
+  }
+
+  handlePageChange(event: any): void{
+    this.pagina = event;
   }
 
 }

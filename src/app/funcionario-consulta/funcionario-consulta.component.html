@@ -1,1 +1,63 @@
-<p>funcionario-consulta works!</p>
+<div *ngIf="mensagem_sucesso" (click)="mensagem_sucesso= ''"class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Sucesso!</strong> {{mensagem_sucesso}}
+    <button type="button" class="btn-close" aria-label="Close"></button>
+  </div>
+  
+  <div *ngIf="mensagem_erro" (click)="mensagem_erro= ''"class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Erro!</strong> {{mensagem_erro}}
+    <button type="button" class="btn-close" aria-label="Close"></button>
+  </div>
+
+<div>
+    <h3>Consulta de funcionário</h3>
+    <p>Listagem de funcionários cadastros</p>
+    <hr/>
+
+    <div class="text-center">
+        <pagination-controls
+            (pageChange)= "handlePageChange($event)"
+            previousLabel="Pagina anterior" 
+            nextLabel="Proxima Pagina"
+            ></pagination-controls>
+    </div>
+
+
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Função</th>
+                <th>Ativo</th>
+                <th>Removido</th>
+                <th>Operações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of funcionarios | paginate : {itemsPerPage: 20, currentPage: pagina}">
+                <td>{{f.nome | uppercase}}</td>
+                <td>{{f.cpf | uppercase}}</td>
+                <td>{{f.tipoPessoa | uppercase}}</td>
+                <td>{{f.flag_ativo | uppercase}}</td>
+                <td>{{f.flag_removido | uppercase}}</td>
+                <td>
+                    <button [routerLink]="['/funcionario-edicao', f.id_pessoa]" class="btn btn-sm btn-primary">Editar</button>
+                    &nbsp;
+                    <button (click)="onDelete(f.idFuncionario)" class="btn btn-sm btn-danger">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    Quantidade de studios cadastrados: {{funcionarios.length}}            
+                </td>
+            </tr>
+        </tfoot>
+        
+
+
+    </table>
+
+</div>

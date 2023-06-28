@@ -13,6 +13,16 @@
     <p>Listagem de studios cadastros</p>
     <hr/>
 
+    <div class="text-center">
+        <pagination-controls
+            (pageChange)= "handlePageChange($event)"
+            previousLabel="Pagina anterior" 
+            nextLabel="Proxima Pagina"
+            ></pagination-controls>
+    </div>
+
+
+
     <table class="table table-sm table-hover">
         <thead>
             <tr>
@@ -25,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let s of studios">
+            <tr *ngFor="let s of studios | paginate : {itemsPerPage: 5, currentPage: pagina}">
                 <td>{{s.razaoSocial | uppercase}}</td>
                 <td>{{s.nomeFantasia | uppercase}}</td>
                 <td>{{s.cnpj | uppercase}}</td>

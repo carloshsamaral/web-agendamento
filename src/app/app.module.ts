@@ -10,6 +10,8 @@ import { FuncionarioEdicaoComponent } from './funcionario-edicao/funcionario-edi
 import { StudioCadastroComponent } from './studio-cadastro/studio-cadastro.component';
 import { StudioConsultaComponent } from './studio-consulta/studio-consulta.component';
 import { StudioEdicaoComponent } from './studio-edicao/studio-edicao.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 const routes : Routes = [
   { path : '', pathMatch: 'full', redirectTo: 'studio-consulta' },
@@ -36,7 +38,8 @@ const routes : Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
